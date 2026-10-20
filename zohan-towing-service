@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zohan Towing Service | 24/7 Emergency Towing & Roadside Assistance</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                        dark: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .glow-amber {
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
+        }
+        .pulse-btn {
+            animation: pulse-glow 2s infinite;
+        }
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(245, 158, 11, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-slate-100 min-h-screen flex flex-col pb-20 md:pb-0">
+
+    <!-- Emergency Top Announcement Bar -->
+    <div class="bg-amber-500 text-dark-900 font-bold px-4 py-2 text-center text-sm flex items-center justify-center gap-2">
+        <i class="fa-solid fa-triangle-exclamation animate-bounce"></i>
+        <span>24/7 Emergency Highway Helpline Active. Average Arrival Time: <span class="underline">15–25 Mins</span>!</span>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-dark-900/95 backdrop-blur border-b border-dark-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-dark-900 font-extrabold text-xl shadow-lg">
+                    <i class="fa-solid fa-truck-pickup"></i>
+                </div>
+                <div>
+                    <span class="text-xl md:text-2xl font-black tracking-tight text-white block leading-tight">ZOHAN</span>
+                    <span class="text-xs font-semibold text-amber-400 tracking-widest uppercase block">Towing Service</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center gap-8 font-medium text-sm">
+                <a href="#services" class="hover:text-amber-400 transition-colors">All Services</a>
+                <a href="#areas" class="hover:text-amber-400 transition-colors">Service Areas</a>
+                <a href="#calculator" class="hover:text-amber-400 transition-colors">ETA & Fare Calculator</a>
+                <a href="#testimonials" class="hover:text-amber-400 transition-colors">Reviews</a>
+                <a href="#faqs" class="hover:text-amber-400 transition-colors">FAQs</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="hidden sm:flex items-center gap-3">
+                <button onclick="shareWhatsAppLocation()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-4 py-2.5 rounded-lg flex items-center gap-2 text-sm transition-all shadow-md">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Share Location
+                </button>
+                <a href="tel:+919876543210" class="bg-amber-500 hover:bg-amber-400 text-dark-900 font-bold px-5 py-2.5 rounded-lg flex items-center gap-2 text-sm transition-all shadow-lg glow-amber pulse-btn">
+                    <i class="fa-solid fa-phone-volume"></i> +91 98765 43210
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden text-2xl text-slate-300 hover:text-amber-400 p-2">
+                <i class="fa-solid fa-bars" id="menuIcon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-dark-800 border-b border-dark-700 px-4 py-6 space-y-4">
+            <a href="#services" onclick="toggleMobileMenu()" class="block font-medium hover:text-amber-400">All Services</a>
+            <a href="#areas" onclick="toggleMobileMenu()" class="block font-medium hover:text-amber-400">Service Areas</a>
+            <a href="#calculator" onclick="toggleMobileMenu()" class="block font-medium hover:text-amber-400">ETA & Fare Calculator</a>
+            <a href="#testimonials" onclick="toggleMobileMenu()" class="block font-medium hover:text-amber-400">Reviews</a>
+            <a href="#faqs" onclick="toggleMobileMenu()" class="block font-medium hover:text-amber-400">FAQs</a>
+            <div class="pt-4 border-t border-dark-700 flex flex-col gap-3">
+                <button onclick="shareWhatsAppLocation()" class="w-full bg-emerald-600 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Share WhatsApp Location
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-12 md:py-20 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-900 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Hero Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold">
+                        <i class="fa-solid fa-bolt"></i> 24/7 Rapid Response Towing & Assistance
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                        Stranded On Road? <br>
+                        <span class="text-amber-500">Fast Relief In 15 Mins.</span>
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0">
+                        Zohan Towing Service provides round-the-clock emergency vehicle recovery, flatbed towing, and breakdown assistance across Lonavala, Khandala, and Express Highways.
+                    </p>
+
+                    <!-- Feature Badges -->
+                    <div class="pt-2 flex flex-wrap justify-center lg:justify-start gap-4 text-xs sm:text-sm font-medium text-slate-300">
+                        <span class="flex items-center gap-1.5 bg-dark-800 px-3 py-1.5 rounded-lg border border-dark-700"><i class="fa-solid fa-shield-halved text-amber-500"></i> Zero Damage Guarantee</span>
+                        <span class="flex items-center gap-1.5 bg-dark-800 px-3 py-1.5 rounded-lg border border-dark-700"><i class="fa-solid fa-clock text-amber-500"></i> 15-30 Min Rapid Arrival</span>
+                        <span class="flex items-center gap-1.5 bg-dark-800 px-3 py-1.5 rounded-lg border border-dark-700"><i class="fa-solid fa-tag text-amber-500"></i> Transparent Pricing</span>
+                    </div>
+
+                    <!-- Hero Call to Action Buttons -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="tel:+919876543210" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-dark-900 font-extrabold px-8 py-4 rounded-xl flex items-center justify-center gap-3 text-lg shadow-xl transition-all glow-amber">
+                            <i class="fa-solid fa-phone-flip animate-pulse"></i> Call Emergency Desk
+                        </a>
+                        <button onclick="shareWhatsAppLocation()" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-4 rounded-xl flex items-center justify-center gap-3 text-lg shadow-lg transition-all">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Share Live Location
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Quick Assistance Request Form -->
+                <div class="lg:col-span-5">
+                    <div class="bg-dark-800/90 border border-dark-700 p-6 sm:p-8 rounded-2xl shadow-2xl backdrop-blur relative">
+                        <div class="absolute -top-3 right-6 bg-amber-500 text-dark-900 text-xs font-extrabold uppercase px-3 py-1 rounded-full shadow">
+                            Instant Callback
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Request Immediate Help</h3>
+                        <p class="text-xs text-slate-400 mb-6">Fill in details and our dispatch vehicle will contact you within 2 minutes.</p>
+
+                        <form id="emergencyForm" onsubmit="handleEmergencySubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-300 mb-1">Your Name</label>
+                                <input type="text" id="custName" required placeholder="John Doe" class="w-full bg-dark-900 border border-dark-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-300 mb-1">Phone Number</label>
+                                <input type="tel" id="custPhone" required placeholder="+91 98765 43210" class="w-full bg-dark-900 border border-dark-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-300 mb-1">Required Service</label>
+                                <select id="custService" class="w-full bg-dark-900 border border-dark-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                                    <option value="Car Towing Service">Car Towing Service</option>
+                                    <option value="Flatbed Towing Service">Flatbed Towing Service</option>
+                                    <option value="24-Hour Towing Service">24-Hour Emergency Towing</option>
+                                    <option value="Battery Jump-Start">Battery Jump-Start Service</option>
+                                    <option value="On-Road Tyre Assistance">On-Road Tyre Assistance</option>
+                                    <option value="Accident Vehicle Recovery">Accident Vehicle Recovery</option>
+                                    <option value="Breakdown Service">Breakdown Repair Service</option>
+                                    <option value="Other Highway Assistance">Other Highway Assistance</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-300 mb-1">Current Location / Route</label>
+                                <input type="text" id="custLocation" required placeholder="e.g. Lonavala Toll Plaza, Express Highway" class="w-full bg-dark-900 border border-dark-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                            </div>
+                            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-dark-900 font-bold py-3.5 rounded-lg transition-all shadow-md mt-2 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> Request Immediate Dispatch
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section Header -->
+    <section id="services" class="py-16 bg-dark-900 border-t border-dark-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-amber-400 font-semibold text-sm uppercase tracking-widest">Our Expertise</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Comprehensive 15 Emergency Services</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-3">From light vehicle towing to heavy crane recovery and roadside battery fixes, we offer independent, 24/7 support.</p>
+            </div>
+
+            <!-- Services Grid (15 Independent Services) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="servicesGrid">
+                <!-- Dynamically Inserted or Rendered below -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Pricing & ETA Calculator Section -->
+    <section id="calculator" class="py-16 bg-dark-800/60 border-y border-dark-700">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold uppercase px-3 py-1 rounded-full">Transparent Estimates</span>
+                <h2 class="text-3xl font-extrabold text-white mt-3">Instant Fare & Arrival Time Estimator</h2>
+                <p class="text-slate-400 text-sm mt-2">Calculate estimated towing cost and response time based on distance and service type.</p>
+            </div>
+
+            <div class="bg-dark-900 border border-dark-700 rounded-2xl p-6 sm:p-8 shadow-xl grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-slate-300 mb-2">Select Service Type</label>
+                        <select id="calcService" onchange="calculateEstimate()" class="w-full bg-dark-800 border border-dark-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <option value="flatbed">Flatbed Towing Service (Premium Protection)</option>
+                            <option value="standard">Standard Car Towing Service</option>
+                            <option value="underlift">Hydraulic Underlift Towing</option>
+                            <option value="jumpstart">Battery Jump-Start / Tyre Support</option>
+                            <option value="crane">Heavy Vehicle / Crane Recovery</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-xs font-semibold uppercase text-slate-300">Estimated Distance (KM)</label>
+                            <span id="distValue" class="text-amber-400 font-bold text-sm">15 KM</span>
+                        </div>
+                        <input type="range" id="calcDistance" min="1" max="100" value="15" oninput="calculateEstimate()" class="w-full accent-amber-500 cursor-pointer">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-slate-300 mb-2">Time of Service</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button type="button" id="timeDay" onclick="setTimeOfDay('day')" class="bg-amber-500 text-dark-900 font-bold py-2.5 rounded-lg text-xs uppercase border border-amber-500">Day Time (6 AM - 9 PM)</button>
+                            <button type="button" id="timeNight" onclick="setTimeOfDay('night')" class="bg-dark-800 text-slate-300 font-bold py-2.5 rounded-lg text-xs uppercase border border-dark-700">Night Time (9 PM - 6 AM)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Card -->
+                <div class="bg-dark-800 border border-amber-500/30 rounded-xl p-6 text-center space-y-6">
+                    <div>
+                        <span class="text-xs text-slate-400 uppercase tracking-wider block">Estimated Price Range</span>
+                        <div id="estPrice" class="text-4xl font-extrabold text-amber-400 mt-1">₹ 1,800 - ₹ 2,200</div>
+                        <span class="text-[11px] text-slate-500 block mt-1">*Final quote may vary based on exact vehicle weight & road condition</span>
+                    </div>
+
+                    <div class="pt-4 border-t border-dark-700 grid grid-cols-2 gap-4 text-left">
+                        <div>
+                            <span class="text-[11px] text-slate-400 block uppercase">Est. Dispatch ETA</span>
+                            <span id="estETA" class="text-lg font-bold text-white"><i class="fa-solid fa-clock text-amber-500 mr-1"></i> 15 - 25 Mins</span>
+                        </div>
+                        <div>
+                            <span class="text-[11px] text-slate-400 block uppercase">Safety Rating</span>
+                            <span class="text-lg font-bold text-emerald-400"><i class="fa-solid fa-shield-check mr-1"></i> 100% Damage-Free</span>
+                        </div>
+                    </div>
+
+                    <a href="tel:+919876543210" class="block w-full bg-amber-500 hover:bg-amber-400 text-dark-900 font-bold py-3 rounded-lg transition-all text-sm shadow">
+                        Book Dispatch At This Fare
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Areas Highlight Section -->
+    <section id="areas" class="py-16 bg-dark-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-amber-400 font-semibold text-sm uppercase tracking-widest">Coverage Network</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Key Service Locations & Highway Zones</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2">Strategically parked tow trucks stationed along high-frequency breakdown spots for fastest pickup.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Location 1 -->
+                <div class="bg-dark-800 border border-dark-700 rounded-xl p-6 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-lg flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-mountain text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Lonavala Sector</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">Full coverage across Lonavala market, Khandala Ghat, Bhushi Dam road, and nearby resorts.</p>
+                    <span class="text-xs text-amber-400 font-semibold flex items-center gap-1"><i class="fa-solid fa-bolt"></i> Avg Arrival: 15 Mins</span>
+                </div>
+
+                <!-- Location 2 -->
+                <div class="bg-dark-800 border border-dark-700 rounded-xl p-6 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-lg flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-road text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Khandala Ghat Zone</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">Specialized winch & hydraulic underlift trucks for steep gradient and ghat curve emergency assistance.</p>
+                    <span class="text-xs text-amber-400 font-semibold flex items-center gap-1"><i class="fa-solid fa-bolt"></i> Avg Arrival: 15–20 Mins</span>
+                </div>
+
+                <!-- Location 3 -->
+                <div class="bg-dark-800 border border-dark-700 rounded-xl p-6 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-lg flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-car-tunnel text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Express Highway</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">Dedicated highway tow units stationed near toll plazas and express lanes for fast vehicle clearing.</p>
+                    <span class="text-xs text-amber-400 font-semibold flex items-center gap-1"><i class="fa-solid fa-bolt"></i> Avg Arrival: 20 Mins</span>
+                </div>
+
+                <!-- Location 4 -->
+                <div class="bg-dark-800 border border-dark-700 rounded-xl p-6 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-lg flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-map-location-dot text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Local Routes & Cities</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">Intercity towing services connecting local towns to major auto repair hubs and service centers.</p>
+                    <span class="text-xs text-amber-400 font-semibold flex items-center gap-1"><i class="fa-solid fa-bolt"></i> Avg Arrival: 25 Mins</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-dark-800/40 border-t border-dark-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-amber-400 font-semibold text-sm uppercase tracking-widest">Customer Feedback</span>
+                <h2 class="text-3xl font-extrabold text-white mt-2">Trusted By Hundreds Of Drivers</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-dark-900 border border-dark-700 p-6 rounded-xl space-y-4">
+                    <div class="flex text-amber-400 text-sm gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs text-slate-300 italic">"My car had a breakdown near Lonavala Ghat at 2 AM. Zohan Towing reached in less than 20 minutes with a flatbed truck. Highly professional and polite staff!"</p>
+                    <div class="text-xs font-bold text-white border-t border-dark-800 pt-3">
+                        — Rajesh Verma <span class="text-slate-500 font-normal">(Mumbai)</span>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-dark-900 border border-dark-700 p-6 rounded-xl space-y-4">
+                    <div class="flex text-amber-400 text-sm gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs text-slate-300 italic">"Battery died on the Express Highway. Shared my live location via WhatsApp and their technician came and jump-started my car quickly. Fair pricing."</p>
+                    <div class="text-xs font-bold text-white border-t border-dark-800 pt-3">
+                        — Priya Sharma <span class="text-slate-500 font-normal">(Pune)</span>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-dark-900 border border-dark-700 p-6 rounded-xl space-y-4">
+                    <div class="flex text-amber-400 text-sm gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs text-slate-300 italic">"Safe flatbed towing for my luxury sedan. They handled the low ground clearance perfectly without a single scratch. Best towing service in Khandala area!"</p>
+                    <div class="text-xs font-bold text-white border-t border-dark-800 pt-3">
+                        — Sameer Patel <span class="text-slate-500 font-normal">(Lonavala)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frequently Asked Questions Section -->
+    <section id="faqs" class="py-16 bg-dark-900 border-t border-dark-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-amber-400 font-semibold text-sm uppercase tracking-widest">Got Questions?</span>
+                <h2 class="text-3xl font-extrabold text-white mt-2">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4" id="faqAccordion">
+                <!-- FAQ Item 1 -->
+                <div class="bg-dark-800 border border-dark-700 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(1)" class="w-full text-left p-5 text-sm sm:text-base font-bold text-white flex justify-between items-center">
+                        <span>How fast can Zohan Towing reach my location?</span>
+                        <i class="fa-solid fa-chevron-down text-amber-400 transition-transform" id="faqIcon1"></i>
+                    </button>
+                    <div id="faqAns1" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-dark-700/50 pt-3">
+                        Our average response time is 15 to 25 minutes depending on highway traffic and exact location in Lonavala, Khandala, or Express Highways.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-dark-800 border border-dark-700 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(2)" class="w-full text-left p-5 text-sm sm:text-base font-bold text-white flex justify-between items-center">
+                        <span>Do you operate 24 hours on weekends and holidays?</span>
+                        <i class="fa-solid fa-chevron-down text-amber-400 transition-transform" id="faqIcon2"></i>
+                    </button>
+                    <div id="faqAns2" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-dark-700/50 pt-3">
+                        Yes, Zohan Towing Service operates 24 hours a day, 7 days a week, including all public holidays and weekends.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-dark-800 border border-dark-700 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(3)" class="w-full text-left p-5 text-sm sm:text-base font-bold text-white flex justify-between items-center">
+                        <span>Which tow truck is best for my vehicle?</span>
+                        <i class="fa-solid fa-chevron-down text-amber-400 transition-transform" id="faqIcon3"></i>
+                    </button>
+                    <div id="faqAns3" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-dark-700/50 pt-3">
+                        For luxury, low-clearance, or 4WD vehicles, flatbed towing is recommended. For quick city or tight space recoveries, hydraulic underlift towing is ideal.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="bg-dark-800 border border-dark-700 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(4)" class="w-full text-left p-5 text-sm sm:text-base font-bold text-white flex justify-between items-center">
+                        <span>How can I share my location if I don't know the exact address?</span>
+                        <i class="fa-solid fa-chevron-down text-amber-400 transition-transform" id="faqIcon4"></i>
+                    </button>
+                    <div id="faqAns4" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-400 leading-relaxed border-t border-dark-700/50 pt-3">
+                        Simply click our "Share WhatsApp Location" button on the website. It opens WhatsApp with your GPS live pin location ready to send to our team.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 border-t border-dark-700 pt-12 pb-8 text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 bg-amber-500 rounded flex items-center justify-center text-dark-900 font-black">
+                            <i class="fa-solid fa-truck-pickup"></i>
+                        </div>
+                        <span class="text-base font-bold text-white">ZOHAN TOWING</span>
+                    </div>
+                    <p class="leading-relaxed">24/7 Professional Towing, Roadside Assistance & Vehicle Recovery in Lonavala, Khandala & Express Highway.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3 uppercase">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="hover:text-amber-400">All 15 Services</a></li>
+                        <li><a href="#calculator" class="hover:text-amber-400">ETA & Fare Calculator</a></li>
+                        <li><a href="#areas" class="hover:text-amber-400">Service Coverage</a></li>
+                        <li><a href="#faqs" class="hover:text-amber-400">Help & FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3 uppercase">Key Coverage Areas</h4>
+                    <ul class="space-y-2">
+                        <li>Lonavala Towing Service</li>
+                        <li>Khandala Ghat Emergency Recovery</li>
+                        <li>Express Highway Roadside Support</li>
+                        <li>Intercity Vehicle Transport</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3 uppercase">24/7 Helpline</h4>
+                    <p class="text-white font-bold text-base mb-1">+91 98765 43210</p>
+                    <p class="text-slate-400 mb-3">Dispatch Desk Active Always</p>
+                    <div class="flex gap-3 text-base text-amber-400">
+                        <a href="#" class="hover:text-white"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="hover:text-white"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-white"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-dark-800 pt-6 text-center">
+                <p>© 2026 Zohan Towing Service. All rights reserved. | Fast 24/7 Roadside Assistance</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed Bottom Sticky Bar For Mobile Smartphones -->
+    <div class="fixed bottom-0 left-0 right-0 z-50 bg-dark-900/95 border-t border-dark-700 p-2 sm:hidden backdrop-blur">
+        <div class="grid grid-cols-2 gap-2">
+            <button onclick="shareWhatsAppLocation()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 text-xs">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Share Location
+            </button>
+            <a href="tel:+919876543210" class="bg-amber-500 hover:bg-amber-400 text-dark-900 font-extrabold py-3 rounded-lg flex items-center justify-center gap-2 text-xs shadow glow-amber">
+                <i class="fa-solid fa-phone-volume text-sm"></i> Call Now (24/7)
+            </a>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Data for all 15 services
+        const servicesData = [
+            { id: 1, title: "Towing Service", icon: "fa-truck-pickup", desc: "General tow truck service for all types of light and heavy cars with fast local dispatch." },
+            { id: 2, title: "Flatbed Towing Service", icon: "fa-trailer", desc: "Zero-contact, damage-free flatbed transport ideal for luxury, sports, and low-clearance cars." },
+            { id: 3, title: "24-Hour Towing Service", icon: "fa-clock", desc: "Round-the-clock emergency night & day towing desk with immediate highway dispatch." },
+            { id: 4, title: "Hydraulic Underlift Towing", icon: "fa-gears", desc: "Advanced wheel-lift towing for tight city parking spaces, basements, and narrow lanes." },
+            { id: 5, title: "Accident Vehicle Recovery", icon: "fa-car-burst", desc: "Emergency crash recovery and heavy winching clearance in coordination with safety protocols." },
+            { id: 6, title: "Battery Jump-Start Service", icon: "fa-car-battery", desc: "Instant location arrival to jump-start dead vehicle batteries with diagnostic voltage checks." },
+            { id: 7, title: "Breakdown Service", icon: "fa-screwdriver-wrench", desc: "On-site mechanical troubleshooting and minor roadside repair support to get you moving." },
+            { id: 8, title: "Roadside Assistance", icon: "fa-hand-holding-hand", desc: "All-in-one roadside emergency care including key lockouts, fuel top-up, and towing." },
+            { id: 9, title: "On-Road Tyre Assistance", icon: "fa-dharmachakra", desc: "Flat tyre changing, puncture assistance, and spare tyre mounting at your breakdown location." },
+            { id: 10, title: "Crane Service", icon: "fa-weight-hanging", desc: "Heavy-duty recovery crane services for off-road ditch extractions and commercial vehicles." },
+            { id: 11, title: "Car Towing Service", icon: "fa-car", desc: "Reliable hatchback, sedan, and SUV towing with affordable per-kilometer distance rates." },
+            { id: 12, title: "Towing Service in Lonavala", icon: "fa-mountain-city", desc: "Dedicated local towing fleet for Lonavala city, tourist spots, resorts, and lake areas." },
+            { id: 13, title: "Towing Service in Khandala", icon: "fa-hill-rocky", desc: "Specialized winch and ghat breakdown assistance for Khandala slope roads." },
+            { id: 14, title: "Express Highway Towing", icon: "fa-road-spikes", desc: "Rapid response towing stationed near toll plazas along high-speed expressway corridors." },
+            { id: 15, title: "Battery Charging Service", icon: "fa-bolt-lightning", desc: "On-site mobile battery charging and health assessment service right where your vehicle is." }
+        ];
+
+        // Render Services Grid
+        function renderServices() {
+            const container = document.getElementById('servicesGrid');
+            container.innerHTML = servicesData.map(s => `
+                <div class="bg-dark-800 border border-dark-700 rounded-xl p-6 hover:border-amber-500/50 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-lg flex items-center justify-center text-xl mb-4 group-hover:bg-amber-500 group-hover:text-dark-900 transition-all">
+                            <i class="fa-solid ${s.icon}"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">${s.title}</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">${s.desc}</p>
+                    </div>
+                    <div class="pt-3 border-t border-dark-700/60 flex items-center justify-between text-xs font-semibold">
+                        <span class="text-emerald-400"><i class="fa-solid fa-circle-check"></i> Available 24/7</span>
+                        <a href="tel:+919876543210" class="text-amber-400 hover:text-amber-300 flex items-center gap-1">
+                            Book <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // WhatsApp Location Sharing
+        function shareWhatsAppLocation() {
+            const phone = "919876543210";
+            const message = encodeURIComponent("Hello Zohan Towing Service, I need emergency assistance. Here is my live location:");
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        const geoUrl = `https://maps.google.com/?q=${lat},${lng}`;
+                        const fullMsg = encodeURIComponent(`Hello Zohan Towing Service, I need emergency vehicle assistance at my live location: ${geoUrl}`);
+                        window.open(`https://wa.me/${phone}?text=${fullMsg}`, '_blank');
+                    },
+                    (error) => {
+                        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+                    }
+                );
+            } else {
+                window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+            }
+        }
+
+        // Calculator Logic
+        let timeOfDay = 'day';
+
+        function setTimeOfDay(type) {
+            timeOfDay = type;
+            const btnDay = document.getElementById('timeDay');
+            const btnNight = document.getElementById('timeNight');
+            
+            if (type === 'day') {
+                btnDay.className = 'bg-amber-500 text-dark-900 font-bold py-2.5 rounded-lg text-xs uppercase border border-amber-500';
+                btnNight.className = 'bg-dark-800 text-slate-300 font-bold py-2.5 rounded-lg text-xs uppercase border border-dark-700';
+            } else {
+                btnNight.className = 'bg-amber-500 text-dark-900 font-bold py-2.5 rounded-lg text-xs uppercase border border-amber-500';
+                btnDay.className = 'bg-dark-800 text-slate-300 font-bold py-2.5 rounded-lg text-xs uppercase border border-dark-700';
+            }
+            calculateEstimate();
+        }
+
+        function calculateEstimate() {
+            const service = document.getElementById('calcService').value;
+            const distance = parseInt(document.getElementById('calcDistance').value);
+            document.getElementById('distValue').innerText = distance + ' KM';
+
+            let baseRate = 1200;
+            let perKm = 40;
+            let etaMin = 15;
+            let etaMax = 25;
+
+            if (service === 'flatbed') {
+                baseRate = 1800;
+                perKm = 50;
+            } else if (service === 'underlift') {
+                baseRate = 1500;
+                perKm = 45;
+            } else if (service === 'jumpstart') {
+                baseRate = 600;
+                perKm = 15;
+            } else if (service === 'crane') {
+                baseRate = 3500;
+                perKm = 80;
+            }
+
+            if (timeOfDay === 'night') {
+                baseRate += 400; // Night surge charge
+            }
+
+            if (distance > 30) {
+                etaMin = 25;
+                etaMax = 45;
+            }
+
+            const minTotal = baseRate + (distance * perKm);
+            const maxTotal = minTotal + 400;
+
+            document.getElementById('estPrice').innerText = `₹ ${minTotal.toLocaleString()} - ₹ ${maxTotal.toLocaleString()}`;
+            document.getElementById('estETA').innerHTML = `<i class="fa-solid fa-clock text-amber-500 mr-1"></i> ${etaMin} - ${etaMax} Mins`;
+        }
+
+        // Toggle Mobile Navigation
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Toggle FAQ Accordion
+        function toggleFaq(id) {
+            const ans = document.getElementById(`faqAns${id}`);
+            const icon = document.getElementById(`faqIcon${id}`);
+            
+            if (ans.classList.contains('hidden')) {
+                ans.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                ans.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Form Submit Handler
+        function handleEmergencySubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const service = document.getElementById('custService').value;
+            const location = document.getElementById('custLocation').value;
+
+            const text = encodeURIComponent(`*EMERGENCY DISPATCH REQUEST*\nName: ${name}\nPhone: ${phone}\nService: ${service}\nLocation: ${location}`);
+            window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
+        }
+
+        // Initialize Page
+        window.onload = function() {
+            renderServices();
+            calculateEstimate();
+        }
+    </script>
+</body>
+</html>
